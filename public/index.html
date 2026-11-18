@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#121312">
+  <meta name="description" content="A 40-second cinematic Three.js study of the last winter light on Yosemite’s Horsetail Fall.">
+  <title>Firefall — Field Atlas</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script>
+</head>
+<body>
+<header>
+  <div class="wordmark"><svg width="34" height="34" viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m2 27 12-20 6 10 4-7 10 17Zm6-3 6-10 4 6m4 3 3-5 4 6"/></svg><span>Field Atlas</span></div>
+  <div class="header-actions">
+    <button id="notes"><svg class="icon"><use href="#book"/></svg>Field notes</button>
+    <span class="divider"></span>
+    <button id="sound" aria-pressed="true"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span id="sound-label">Sound on</span></button>
+  </div>
+</header>
+<main>
+  <section id="stage" aria-label="Firefall screening room">
+    <canvas id="scene" aria-label="Interactive three-dimensional reconstruction of Horsetail Fall"></canvas>
+    <video id="fallback" playsinline preload="none" hidden></video>
+    <div id="shade"></div>
+    <div id="cover">
+      <div class="place"><span></span> Yosemite National Park</div>
+      <h1>Firefall</h1>
+      <p>The last light of winter on Horsetail Fall.</p>
+      <div class="screen-actions"><button id="watch"><svg class="icon small"><use href="#play"/></svg>Play film</button><span class="running-time">00:40</span></div>
+    </div>
+    <div class="look"><svg class="icon"><use href="#look"/></svg>Drag to look</div>
+    <div id="credit" aria-hidden="true"><span>Music</span>Passage of Time · Scott Buckley<small>Edited excerpt · CC BY 4.0 · scottbuckley.com.au</small></div>
+    <div id="controls">
+      <button id="transport" aria-label="Pause film"><svg class="icon"><use href="#pause"/></svg></button>
+      <span id="elapsed">00:00</span><input id="seek" type="range" min="0" max="40" step="0.04166667" value="0" aria-label="Film position"><span class="total">00:40</span>
+      <button id="full" aria-label="Enter fullscreen" title="Fullscreen"><svg class="icon"><use href="#expand"/></svg></button>
+    </div>
+    <button id="cover-full" aria-label="Enter fullscreen" title="Fullscreen"><svg class="icon"><use href="#expand"/></svg></button>
+  </section>
+  <section id="sequence" aria-labelledby="index-title">
+    <div class="shelf-heading"><h2 id="index-title"><svg class="icon"><use href="#frames"/></svg>Shot index</h2>
+      <a class="download" href="/media/Firefall-procedural.mp4" download="Firefall-procedural.mp4">Download film<svg class="icon"><use href="#download"/></svg></a>
+    </div>
+    <div id="shots"></div>
+  </section>
+</main>
+<dialog id="notes-dialog" aria-labelledby="note-title">
+  <div class="notes-top"><span class="place"><span></span>Field notes</span><button id="close" aria-label="Close notes"><svg class="icon"><use href="#close-icon"/></svg></button></div>
+  <h2 id="note-title">Horsetail Fall</h2>
+  <p>In late February, the setting sun can reach a narrow ribbon of water on the eastern edge of El Capitan. With a clear western sky and enough meltwater, the fall turns gold, then red, as the granite slips into shadow.</p>
+  <a class="source-link" href="https://www.nps.gov/yose/planyourvisit/horsetailfall.htm" target="_blank" rel="noreferrer">Yosemite National Park <span>↗</span></a>
+  <dl><dt>Scene</dt><dd>A code-generated Three.js valley. Seeded rock formations, branching conifers, snow, falling water and drifting spray share one landscape across all seven shots.</dd>
+  <dt>Film</dt><dd>40 seconds · 1920 × 1080 · 24 fps · Stereo</dd>
+  <dt>Music</dt><dd>“Passage of Time” by Scott Buckley. Edited excerpt with a waterfall sound mix. <a href="https://www.scottbuckley.com.au/library/passage-of-time/" target="_blank" rel="noreferrer">Original score ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0 ↗</a></dd></dl>
+</dialog>
+<audio id="score" src="/media/firefall-sound.m4a" preload="metadata"></audio>
+<svg class="sprites" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="book" viewBox="0 0 24 24"><path d="M4 4.5h13.5A2.5 2.5 0 0 1 20 7v13H6.7A2.7 2.7 0 0 1 4 17.3Zm0 13a2.6 2.6 0 0 1 2.7-2.6H20M8 5v10"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="M7 4.8c0-.6.6-.9 1.1-.6l11.4 7.1a.8.8 0 0 1 0 1.4L8.1 19.8c-.5.3-1.1 0-1.1-.6Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="pause" viewBox="0 0 24 24"><path d="M7.5 5v14M16.5 5v14" stroke-width="4"/></symbol>
+  <symbol id="expand" viewBox="0 0 24 24"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5"/></symbol>
+  <symbol id="look" viewBox="0 0 24 24"><path d="M2 12h20M5.5 8.5 2 12l3.5 3.5m13-7L22 12l-3.5 3.5M12 6v12"/></symbol>
+  <symbol id="frames" viewBox="0 0 24 24"><rect x="2" y="5.5" width="20" height="13" rx="1"/><path d="M7 6v12M17 6v12"/></symbol>
+  <symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-4.5-4.5L12 15l4.5-4.5M4.5 16v4h15v-4"/></symbol>
+  <symbol id="close-icon" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+</svg>
+<script type="module" src="/src/app.js"></script>
+</body></html>
